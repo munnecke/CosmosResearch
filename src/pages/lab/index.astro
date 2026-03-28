@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const items = [
+  {
+    title: 'Hubble Tension Explorer',
+    description: 'AI-driven exploration of cosmological phase transitions using Pantheon+, DESI BAO, and Planck data.',
+    status: 'Active',
+  },
+];
+---
+<Base title="Lab — Cosmos Research" description="Interactive experiments and computational explorations.">
+  <h1>Lab</h1>
+  <p>Computational experiments and interactive explorations. More coming soon.</p>
+
+  <div class="card-grid" style="margin-top: var(--space-md);">
+    {items.map((item) => (
+      <div class="card">
+        <span class="tag">{item.status}</span>
+        <h3 style="margin-top:var(--space-xs);">{item.title}</h3>
+        <p style="color:var(--c-text-muted);font-size:0.95rem;">{item.description}</p>
+      </div>
+    ))}
+  </div>
+</Base>

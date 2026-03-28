@@ -1,0 +1,28 @@
+{
+  "name": "cosmos-research",
+  "version": "1.0.0",
+  "private": true,
+  "description": "cosmosresearch.center — a multi-generational science and ideas platform.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/munnecke/CosmosResearch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/munnecke/CosmosResearch/issues"
+  },
+  "homepage": "https://github.com/munnecke/CosmosResearch#readme",
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/node": "^10.0.4",
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.1.1"
+  }
+}

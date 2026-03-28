@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Cosmos Research Center',
+  description = 'A multi-generational science and ideas platform.',
+} = Astro.props;
+
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate" type="application/rss+xml" title="Cosmos Research" href="/rss.xml" />
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a class="nav-brand" href="/">Cosmos Research</a>
+      <ul class="nav-links">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/lab">Lab</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <slot />
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; {year} Cosmos Research Center
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const posts = await Astro.glob('./*.mdx');
+const sorted = posts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).getTime() -
+    new Date(a.frontmatter.pubDate).getTime()
+);
+---
+<Base title="Blog — Cosmos Research" description="Essays, research notes, and reflections.">
+  <h1>Blog</h1>
+
+  {sorted.length === 0 && <p>No posts yet — check back soon.</p>}
+
+  <div class="card-grid" style="margin-top: var(--space-md);">
+    {sorted.map((post) => (
+      <a href={post.url} class="card" style="text-decoration:none;">
+        {post.frontmatter.tag && <span class="tag">{post.frontmatter.tag}</span>}
+        <h3 style="margin-top:var(--space-xs);">{post.frontmatter.title}</h3>
+        <p class="meta">
+          {post.frontmatter.author && <span>{post.frontmatter.author} · </span>}
+          {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric', month: 'short', day: 'numeric',
+          })}
+        </p>
+        {post.frontmatter.description && (
+          <p style="color:var(--c-text-muted);font-size:0.95rem;">{post.frontmatter.description}</p>
+        )}
+      </a>
+    ))}
+  </div>
+</Base>

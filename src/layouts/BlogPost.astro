@@ -1,0 +1,35 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+    pubDate: string;
+    author?: string;
+    tag?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const date = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+<Base title={`${frontmatter.title} — Cosmos Research`} description={frontmatter.description}>
+  <article>
+    <header style="margin-bottom: var(--space-lg);">
+      {frontmatter.tag && <span class="tag">{frontmatter.tag}</span>}
+      <h1 style="margin-top: var(--space-xs);">{frontmatter.title}</h1>
+      <p class="meta">
+        {frontmatter.author && <span>{frontmatter.author} · </span>}
+        <time datetime={frontmatter.pubDate}>{date}</time>
+      </p>
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>

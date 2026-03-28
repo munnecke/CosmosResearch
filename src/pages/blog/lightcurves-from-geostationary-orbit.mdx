@@ -1,0 +1,36 @@
+---
+layout: ../../layouts/BlogPost.astro
+title: Lightcurves from geostationary orbit
+description: What you can learn about a satellite from how it reflects sunlight — and what a $500 smart telescope can reveal.
+pubDate: 2026-02-10
+author: Tom
+tag: Research
+---
+
+Geostationary satellites sit at 35,786 km above the equator, moving at exactly the rate the Earth rotates. From the ground, they appear stationary — which makes them useful for communications, and also unexpectedly interesting for amateur observation.
+
+Over the past few months I've been imaging two of them: Viasat-3 F1 and Viasat-3 F2, using my Seestar S50 smart telescope from the backyard here in San Diego. What started as a curiosity about what a $500 scope could do has turned into something more interesting.
+
+## What a lightcurve tells you
+
+A satellite's lightcurve — its brightness over time — is a fingerprint. As the satellite rotates slowly (or tumbles, if it's uncontrolled), its solar panels and body reflect sunlight at varying angles. The resulting brightness variations encode information about the satellite's shape, rotation rate, and attitude.
+
+For an operational GEO satellite like Viasat-3, the rotation should be slow and the lightcurve relatively stable — the satellite is attitude-controlled, pointing its antenna toward Earth and its panels toward the Sun. Any significant variation is worth noting.
+
+## The Seestar as a science instrument
+
+The Seestar S50 is an integrated smart telescope — 50mm aperture, electronically controlled, with built-in image stacking and a phone app interface. It's designed for astrophotography beginners. It is not, by any conventional metric, a science instrument.
+
+But it has a few properties that make it surprisingly useful for this kind of work. It produces FITS files — the standard astronomical image format — which means standard analysis tools work on it. It has a Python API (via the `seestar_alp` Alpaca implementation) that allows programmatic control and data collection. And it's cheap enough to run continuously without worrying about the cost.
+
+## The FFT result
+
+After collecting several nights of data and running a fast Fourier transform on the brightness time series, the Viasat-3 F1 lightcurve showed a clear periodic component at approximately 0.0042 Hz — a rotation period of roughly 4 minutes. This is consistent with what's been reported in the satellite observation community for this class of vehicle.
+
+The notebook with the full analysis is in the lab section. The code is straightforward Python: `astropy` for FITS handling, `numpy` for the FFT, `matplotlib` for visualization.
+
+## What's next
+
+The more interesting experiment is a stereo baseline: coordinating simultaneous observations with a friend's scope about 72km north, along the coast. The parallax at GEO distance is tiny — but with careful timing and the right target, it should be measurable. The Seestar Telescope Network makes this kind of coordination tractable in a way it wasn't before.
+
+More on that when we have data.
